@@ -8,33 +8,26 @@ public class Direction {
     }
 
     public Direction turnRight() {
+        return getDirection('E', 'W', 'N','S');
+    }
+
+    private Direction getDirection(char firstDirection, char secondDirection,char thirdDirection, char fourthDirection) {
         switch (direction) {
             case 'N':
-                return new Direction('E');
+                return new Direction(firstDirection);
             case 'S':
-                return new Direction('W');
+                return new Direction(secondDirection);
             case 'E':
-                return new Direction('N');
+                return new Direction(thirdDirection);
             case 'W':
-                return new Direction('S');
+                return new Direction(fourthDirection);
             default:
                 throw new IllegalArgumentException();
         }
     }
 
     public Direction turnLeft() {
-        switch (direction) {
-            case 'N':
-                return new Direction('W');
-            case 'S':
-                return new Direction('E');
-            case 'E':
-                return new Direction('N');
-            case 'W':
-                return new Direction('S');
-            default:
-                throw new IllegalArgumentException();
-        }
+        return getDirection('W', 'E','N','S');
     }
 
     @Override
@@ -44,14 +37,12 @@ public class Direction {
 
         Direction direction1 = (Direction) o;
 
-        if (direction != direction1.direction) return false;
-
-        return true;
+        return direction == direction1.direction;
     }
 
     @Override
     public int hashCode() {
-        return (int) direction;
+        return direction;
     }
 
     @Override
