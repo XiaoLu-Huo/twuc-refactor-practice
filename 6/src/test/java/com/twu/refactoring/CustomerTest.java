@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.URL;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -17,21 +17,21 @@ public class CustomerTest {
 
 	private static final String GOLD_PATH = "data/";
 
-    private Customer dinsdale = new Customer("Dinsdale Pirhana");
+    private final Customer disable = new Customer("Dinsdale Pirhana");
 
-    private Movie python = new Movie("Monty Python and the Holy Grail", Movie.REGULAR);
-	private Movie ran = new Movie("Ran", Movie.REGULAR);
-	private Movie la = new Movie("LA Confidential", Movie.NEW_RELEASE);
-	private Movie trek = new Movie("Star Trek 13.2", Movie.NEW_RELEASE);
-	private Movie wallace = new Movie("Wallace and Gromit", Movie.CHILDRENS);
+    private final Movie python = new Movie("Monty Python and the Holy Grail", Movie.REGULAR);
+	private final Movie ran = new Movie("Ran", Movie.REGULAR);
+	private final Movie la = new Movie("LA Confidential", Movie.NEW_RELEASE);
+	private final Movie trek = new Movie("Star Trek 13.2", Movie.NEW_RELEASE);
+	private final Movie wallace = new Movie("Wallace and Gromit", Movie.CHILDREN);
 
     @BeforeEach
     public void setUpData(){
-       dinsdale.addRental(new Rental (python, 3));
-       dinsdale.addRental(new Rental (ran, 1));
-       dinsdale.addRental(new Rental (la, 2));
-       dinsdale.addRental(new Rental (trek, 1));
-       dinsdale.addRental(new Rental (wallace, 6));
+       disable.addRental(new Rental (python, 3));
+       disable.addRental(new Rental (ran, 1));
+       disable.addRental(new Rental (la, 2));
+       disable.addRental(new Rental (trek, 1));
+       disable.addRental(new Rental (wallace, 6));
    }
 
     @Test
@@ -42,23 +42,17 @@ public class CustomerTest {
 
     @Test
     public void shouldOutputCustomerStatement() throws Exception {
-        verifyOutput(dinsdale.statement(), "output1");
+        verifyOutput(disable.statement(), "output1");
     }
 
     @Test
     public void shouldOutputChangedStatement() throws Exception {
         la.setPriceCode(Movie.REGULAR);
-        verifyOutput(dinsdale.statement(), "outputChange");
+        verifyOutput(disable.statement(), "outputChange");
     }
-
-    /*
-    public void testHtml() throws Exception {
-        verifyOutput("1st Output", "outputHtml", dinsdale.htmlStatement());
-    }
-    */
     	
     protected void verifyOutput(String actualValue, String fileName) throws IOException{
-        String filePath = getClass().getClassLoader().getResource(GOLD_PATH + fileName).getPath();
+        String filePath = Objects.requireNonNull(getClass().getClassLoader().getResource(GOLD_PATH + fileName)).getPath();
         BufferedReader file = new BufferedReader (new FileReader (filePath));
         BufferedReader actualStream = new BufferedReader (new StringReader (actualValue));
         String thisFileLine;
