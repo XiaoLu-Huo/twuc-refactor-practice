@@ -2,9 +2,9 @@ package com.twu.refactoring;
 
 public class Rental {
 
-    private Movie movie;
+    private final Movie movie;
 
-    private int daysRented;
+    private final int daysRented;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
