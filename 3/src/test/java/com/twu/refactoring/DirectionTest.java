@@ -12,7 +12,7 @@ public class DirectionTest {
     private Direction east;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         north = new Direction('N');
         east = new Direction('E');
     }
