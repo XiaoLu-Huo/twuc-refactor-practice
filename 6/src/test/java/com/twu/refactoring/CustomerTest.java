@@ -17,13 +17,13 @@ public class CustomerTest {
 
 	private static final String GOLD_PATH = "data/";
 
-    private final Customer disable = new Customer("Dinsdale Pirhana");
+    private final Customer disable = new Customer("Disable Piranha");
 
     private final Movie python = new Movie("Monty Python and the Holy Grail", Movie.REGULAR);
 	private final Movie ran = new Movie("Ran", Movie.REGULAR);
 	private final Movie la = new Movie("LA Confidential", Movie.NEW_RELEASE);
 	private final Movie trek = new Movie("Star Trek 13.2", Movie.NEW_RELEASE);
-	private final Movie wallace = new Movie("Wallace and Gromit", Movie.CHILDREN);
+	private final Movie wallace = new Movie("Wallace and Grommet", Movie.CHILDREN);
 
     @BeforeEach
     public void setUpData(){
